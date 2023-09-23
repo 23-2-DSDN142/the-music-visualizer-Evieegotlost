@@ -30,11 +30,7 @@ let volume_drum  = map(drum, 0, 100, 0, 0.7 * height, true);
 let volume_bass  = map(bass, 0, 100, 0, 0.7 * height, true);
 let volume_other = map(other, 0, 100, 0, 0.7 * height, true);
 
-// let drumHeight = map(drum, 0, 100, 0, height);
-// let ballSize = 40;
 
-// fill(0, 200, 0);
-// ellipse(width/2, drumHeight*400, ballSize);
 
 rectMode(CENTER);
 let rectY = height/3 *2
