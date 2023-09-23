@@ -10,11 +10,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    let bar_height = width / 12;
    let bar_pos_x = width / 2;
    let ballSize = 40;
-   let drumHeight = map(drum, 0, 100, 0+ballSize/2, height);
+   let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
 
    
-   fill(0, 200, 0);
-   ellipse(width/2, drumHeight, ballSize);
+   fill(255);
+   ellipse(width/2, vocalHeight, ballSize);
 
    // vocal bar is red
   //  fill(200, 0, 0);
@@ -29,17 +29,17 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   //  text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
  
    // bass bar is blue
-   fill(50, 50, 240);
-   rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-   fill(0);
-   text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
+  //  fill(50, 50, 240);
+  //  rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
+  //  fill(0);
+  //  text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
  
-   // other bar is white
-   fill(200, 200, 200);
-   rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-   fill(0);
-   text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-   fill(255, 255, 0);
+  //  // other bar is white
+  //  fill(200, 200, 200);
+  //  rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
+  //  fill(0);
+  //  text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
+  //  fill(255, 255, 0);
  
    // display "words"
    textAlign(CENTER);
