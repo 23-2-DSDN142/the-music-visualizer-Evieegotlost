@@ -1,4 +1,6 @@
 
+
+
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   background(20)
@@ -11,8 +13,9 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    let bar_pos_x = width / 2;
    let ballSize = 40;
    let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
-
    
+   let particles = [];
+
    fill(255);
    ellipse(width/2, vocalHeight, ballSize);
 
@@ -45,4 +48,23 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    textAlign(CENTER);
    textSize(vocal);
    text(words, width/2, height/3);
+
 }
+
+
+  	//Display the particle effects and detects the beat of the audio
+    push();
+  	translate(width/2,height/2);
+  	shadow();
+    let p = new Particle();
+    particles.push(p);
+    
+    for(let i = 0; i < particles.length; i++) {
+      if(!particles[i].edges()) {
+      particles[i].update(amp > 230);
+      particles[i].show();
+      } else {
+        particles.splice(i, 1)
+      }
+    }
+  pop();
