@@ -33,6 +33,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   image(frame, 0, 0);
 
     //volume bar
+    let vocalvol = map(vocal, 0, 100, 30, 90);
     let volheight = 20;
     let volwidth = 70;
     let volX = 480;
