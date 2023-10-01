@@ -6,8 +6,8 @@ let vol;
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if(firstRun){
     rectMode(CENTER);
-    frame = loadImage('tvframe.png');
-    vol = loadImage('volume.png');
+    frame = loadImage('assets/tvframe.png');
+    vol = loadImage('assets/volume.png');
     firstRun = false;
   }
   background(23, 0, 92) //blue screen 0, 98, 255
@@ -21,18 +21,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    let ballSize = 40;
    let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
 
-  //  fill(255);
-  //  ellipse(width/2, vocalHeight, ballSize);
-
-  //  // vocal bar is red
-  //  fill(200, 0, 0);
-  //  rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-  //  fill(0);
-  //  text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
-
   image(frame, 0, 0);
 
-    //volume bar
+  
+  volumebar ();
+  function volumebar(){
     let vocalvol = map(vocal, 0, 100, -10, 40);
     let volheight = 20;
     let volwidth = 70;
@@ -46,6 +39,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   for(let i =1; i <= vocalvol; i++){
     let barstep = i*30;
     rect(barstep+450, volY, volheight, volwidth);
+  }
   }
 
 }
