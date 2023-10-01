@@ -23,23 +23,27 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   image(frame, 0, 0);
 
+  console.log(counter);
+  if(counter>=100){
+    volumebar (vocal);
+  }
+
+}
+
+function volumebar(vocal){
+  let vocalvol = map(vocal, 0, 100, -10, 40);
+  let volheight = 20;
+  let volwidth = 70;
+  // let volX = 480;
+  let volY = 880;
+  vol.resize(200,100);
+  image(vol, 450, 750);
   
-  volumebar ();
-  function volumebar(){
-    let vocalvol = map(vocal, 0, 100, -10, 40);
-    let volheight = 20;
-    let volwidth = 70;
-    // let volX = 480;
-    let volY = 880;
-    image(vol, 450, 750);
-    vol.resize(200,100);
-    noStroke();
-    fill(255);
+  noStroke();
+  fill(255);
 
-  for(let i =1; i <= vocalvol; i++){
-    let barstep = i*30;
-    rect(barstep+450, volY, volheight, volwidth);
-  }
-  }
-
+for(let i =1; i <= vocalvol; i++){
+  let barstep = i*30;
+  rect(barstep+450, volY, volheight, volwidth);
+}
 }
