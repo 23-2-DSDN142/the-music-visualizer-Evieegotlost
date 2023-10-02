@@ -24,9 +24,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   image(frame, 0, 0);
 
   console.log(counter);
-  if(counter>=100){
+  if(counter>=2860 && counter<=4300 && counter>=7560){
     volumebar (vocal);
   }
+
 
 }
 
@@ -38,7 +39,6 @@ function volumebar(vocal){
   let volY = 880;
   vol.resize(200,100);
   image(vol, 450, 750);
-  
   noStroke();
   fill(255);
 
