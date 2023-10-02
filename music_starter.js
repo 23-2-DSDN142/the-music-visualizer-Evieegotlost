@@ -24,7 +24,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   image(frame, 0, 0);
 
   console.log(counter);
-  if(counter>=2860 && counter<=4300 && counter>=7560){
+  if(counter>=2860 && counter<=4300){
     volumebar (vocal);
   }
 
