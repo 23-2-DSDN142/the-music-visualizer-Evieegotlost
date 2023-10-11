@@ -2,6 +2,7 @@ let firstRun = true
 let frame;
 let vol;
 let errortab;
+let scanlines
 
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
@@ -10,7 +11,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     rectMode(CENTER);
     frame = loadImage('assets/tvframe.png');
     vol = loadImage('assets/volume.png');
-    errortab = loadImage('assets/errortest.png')
+    errortab = loadImage('assets/errortest.png');
+    scanlines = loadImage('assets/scanlines.png');
     firstRun = false;
   }
   background(23, 0, 92) //blue screen 0, 98, 255
@@ -69,8 +71,10 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if(counter>=2860 && counter<=4300){
   errortabs();
   }
-
+  
+  image(scanlines, 0, 0);
   image(frame, 0, 0);
+
 }
 
 function volumebar(vocal){
