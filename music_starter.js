@@ -1,9 +1,9 @@
-let firstRun = true
+let firstRun = true;
 let frame;
 let vol;
 let errortab;
-let scanlines
-
+let scanlines;
+let eyeopen = [];
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -13,13 +13,21 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vol = loadImage('assets/volume.png');
     errortab = loadImage('assets/errortest.png');
     scanlines = loadImage('assets/scanlines.png');
+    eyeopen.push(loadImage('assets/eye/eye_0.png'));
+    eyeopen.push(loadImage('assets/eye/eye_1.png'));
+    eyeopen.push(loadImage('assets/eye/eye_2.png'));
+    eyeopen.push(loadImage('assets/eye/eye_3.png'));
+    eyeopen.push(loadImage('assets/eye/eye_4.png'));
     firstRun = false;
   }
+
+
   background(23, 0, 92) //blue screen 0, 98, 255
   textFont('Helvetica'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
-
+  image(scanlines, 0, 0);
+  image(frame, 0, 0);
    let bar_spacing = height / 10;
    let bar_height = width / 12;
    let bar_pos_x = width / 2;
@@ -48,7 +56,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    text("*** STOP: 0x000000FE (0x00000008, 0x000000006, 0x00000009, 0x847075cc)", 150, 810);
    text("Collecting data for crash dump ...", 150, 900);
    text("Initializing disk for crash dump ...", 150, 930);
-   text("Biginning dump of physical memory.", 150, 960);
+   text("Beginning dump of physical memory.", 150, 960);
    text("Dumping physical memory to disk:  95", 150, 990);
    }
 
@@ -72,10 +80,17 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   errortabs();
   }
   
-  image(scanlines, 0, 0);
-  image(frame, 0, 0);
+
 
 }
+
+
+let VocalFrame = int(map(vocal, 0, 100, 0, 4));
+console.log(VocalFrame);
+push();
+scale(1);
+image(eye[VocalFrame, 100, 100]);
+pop();
 
 function volumebar(vocal){
   let vocalvol = map(vocal, 0, 100, -10, 40);
@@ -99,4 +114,5 @@ function errortabs(){
   image(errortab, 0, 0);
 
 }
+
 
