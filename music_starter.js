@@ -94,7 +94,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     counter>=4680 && counter<=4700||
     counter>=4720 && counter<=7140||
     counter>=7200 && counter<=9290||
-    counter>=9320 && counter<=10533){
+    counter>=9320 && counter<=10200){
    PaintTab();
    draw_history_line(bass_history);
  }
@@ -104,13 +104,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
  console.log(counter);
  if(counter>=2860 && counter<=4300 || 
    counter>=7200 && counter<=9290||
-   counter>=9320 && counter<=10533){
+   counter>=9320 && counter<=10200){
    volumebar (vocal);
    errortabs(drum);
  }
 
  if(counter>=0 && counter<=7140 ||
-  counter>=7190 && counter<=10533){
+  counter>=7190 && counter<=10200){
  glitches(other);
 }
 
