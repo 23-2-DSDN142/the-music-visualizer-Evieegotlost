@@ -41,9 +41,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   rectMode(CENTER)
   textSize(24);
 
-   let bar_spacing = height / 10;
-   let bar_height = width / 12;
-   let bar_pos_x = width / 2;
+
    let ballSize = 40;
    let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
    add_to_history(bass_history, bass);
@@ -79,14 +77,11 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     background("#0000aa");
     BSOD();
   }
-
-  if(counter>=7140 && counter<=7190){
-  
-  }
   
   if(counter>=0 && counter<=7140 ||
      counter>=7190 && counter<=10533){
     eyeblink (drum);
+    glitches(other);
   }
 
  strokeWeight(7);  
@@ -98,19 +93,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     counter>=2860 && counter<=4300||
     counter>=4680 && counter<=4700||
     counter>=4720 && counter<=7140||
-    counter>=7190 && counter<=10533){
+    counter>=7200 && counter<=9290||
+    counter>=9320 && counter<=10533){
    PaintTab();
    draw_history_line(bass_history);
  }
 
+
+
  console.log(counter);
  if(counter>=2860 && counter<=4300 || 
-   counter>=7200 && counter<=9300||
+   counter>=7200 && counter<=9290||
    counter>=9320 && counter<=10533){
    volumebar (vocal);
    errortabs(drum);
  }
 
+ if(counter>=0 && counter<=7140 ||
+  counter>=7190 && counter<=10533){
+ glitches(other);
+}
 
  image(scanlines, 0, 0);
  image(frame, 0, 0);
@@ -176,4 +178,20 @@ function add_to_history(history, d) {
 
 function reset_music() {
   bass_history = [];
+}
+
+function glitches(other) {
+  noStroke();
+   fill('#fd00fb');
+   rect(200, 200, 5 * other, 120);
+   rect(1700, 600, 5 * other, 40);
+   rect(250, 930, 8 * other, 25);   
+   fill('#00ff00');
+   rect(1800, 660, 2 * other, 120);
+   rect(30, 690, 5 * other, 25);   
+   rect(1700, 50, 6 * other, 120);
+   fill('#02feff');
+   rect(120, 800, 5 * other, 170);
+   rect(1600, 300, 8 * other, 20);
+
 }
