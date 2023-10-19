@@ -85,7 +85,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   }
 
  strokeWeight(7);  
-  // bass bar is blue
   stroke(252, 3, 227);
 
   if(counter>=1450 && counter<=2820 ||
