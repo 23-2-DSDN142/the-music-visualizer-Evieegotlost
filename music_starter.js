@@ -36,8 +36,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   }
 
 
-  background(23, 0, 92) //blue screen 0, 98, 255
-  textFont('Helvetica'); // please use CSS safe fonts
+  background(23, 0, 92)
+  textFont('Helvetica'); 
   rectMode(CENTER)
   textSize(24);
 
