@@ -42,8 +42,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   textSize(24);
 
 
-   let ballSize = 40;
-   let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
    add_to_history(bass_history, bass);
 
    function BSOD(){
