@@ -31,6 +31,7 @@ let volume_bass  = map(bass, 0, 100, 0, 0.7 * height, true);
 let volume_other = map(other, 0, 100, 0, 0.7 * height, true);
 
 
+
 rectMode(CENTER);
 let rectY = height/3 *2
 fill(200, 0, 0);
