@@ -13,11 +13,16 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vol = loadImage('assets/volume.png');
     errortab = loadImage('assets/errortest.png');
     scanlines = loadImage('assets/scanlines.png');
+    // eyeopen = loadImage('assets/eye/eye_0.png');
     eyeopen.push(loadImage('assets/eye/eye_0.png'));
     eyeopen.push(loadImage('assets/eye/eye_1.png'));
     eyeopen.push(loadImage('assets/eye/eye_2.png'));
     eyeopen.push(loadImage('assets/eye/eye_3.png'));
     eyeopen.push(loadImage('assets/eye/eye_4.png'));
+    eyeopen.push(loadImage('assets/eye/eye_5.png'));
+    eyeopen.push(loadImage('assets/eye/eye_6.png'));
+    eyeopen.push(loadImage('assets/eye/eye_7.png'));
+    eyeopen.push(loadImage('assets/eye/eye_8.png'));
     firstRun = false;
   }
 
@@ -80,17 +85,21 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   errortabs();
   }
   
-
+  if(counter>=0 && counter<=7140 ||
+     counter>=7190 && counter<=10533){
+    eyeblink (drum);
+  }
 
 }
 
-
-let VocalFrame = int(map(vocal, 0, 100, 0, 4));
-console.log(VocalFrame);
+function eyeblink(drum){
+let DrumFrame = int(map(drum, 0, 100, -2, 9));
+console.log(DrumFrame);
 push();
 scale(1);
-image(eye[VocalFrame, 100, 100]);
+image(eyeopen[DrumFrame], 0, 0);
 pop();
+}
 
 function volumebar(vocal){
   let vocalvol = map(vocal, 0, 100, -10, 40);
