@@ -3,7 +3,16 @@ let frame;
 let vol;
 let errortab;
 let scanlines;
+let painttab;
 let eyeopen = [];
+let bass_history = [];
+
+function add_to_history(history, d) {
+  history.push(d);
+  if(history.length >= (width-1)/4) {
+    history.shift();
+  }
+}
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -13,7 +22,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vol = loadImage('assets/volume.png');
     errortab = loadImage('assets/errortest.png');
     scanlines = loadImage('assets/scanlines.png');
-    // eyeopen = loadImage('assets/eye/eye_0.png');
+    painttab = loadImage('assets/paint.png');
     eyeopen.push(loadImage('assets/eye/eye_0.png'));
     eyeopen.push(loadImage('assets/eye/eye_1.png'));
     eyeopen.push(loadImage('assets/eye/eye_2.png'));
@@ -31,18 +40,18 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   textFont('Helvetica'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
-  image(scanlines, 0, 0);
-  image(frame, 0, 0);
+
    let bar_spacing = height / 10;
    let bar_height = width / 12;
    let bar_pos_x = width / 2;
    let ballSize = 40;
    let vocalHeight = map(vocal, 0, 100, 0+ballSize/2, height);
-
+   add_to_history(bass_history, bass);
 
    function BSOD(){
    fill(255);
    textSize(25);
+   noStroke();
    textFont("Lucida Console");
    text("A problem has been detected and Windows has been shut down to prevent damage to your computer.", 150, 150);
    text("MEMORY_MANAGEMENT", 150, 220);
@@ -66,12 +75,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    }
 
 
-  console.log(counter);
-  if(counter>=2860 && counter<=4300 || 
-    counter>=7200 && counter<=9300){
-    volumebar (vocal);
-  }
-
   if(counter>=7140 && counter<=7190){
     background("#0000aa");
     BSOD();
@@ -80,16 +83,37 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   if(counter>=7140 && counter<=7190){
   
   }
-
-  if(counter>=2860 && counter<=4300){
-  errortabs();
-  }
   
   if(counter>=0 && counter<=7140 ||
      counter>=7190 && counter<=10533){
     eyeblink (drum);
   }
 
+ strokeWeight(7);  
+  // bass bar is blue
+  stroke(252, 3, 227);
+
+  if(counter>=1450 && counter<=2820 ||
+    counter>=2830 && counter<=2835||
+    counter>=2860 && counter<=4300||
+    counter>=4680 && counter<=4700||
+    counter>=4720 && counter<=7140||
+    counter>=7190 && counter<=10533){
+   PaintTab();
+   draw_history_line(bass_history);
+ }
+
+ console.log(counter);
+ if(counter>=2860 && counter<=4300 || 
+   counter>=7200 && counter<=9300||
+   counter>=9320 && counter<=10533){
+   volumebar (vocal);
+   errortabs(drum);
+ }
+
+
+ image(scanlines, 0, 0);
+ image(frame, 0, 0);
 }
 
 function eyeblink(drum){
@@ -110,18 +134,46 @@ function volumebar(vocal){
   vol.resize(200,100);
   image(vol, 450, 750);
   noStroke();
-  fill(255);
+  fill('#00ff00');
 
 for(let i =1; i <= vocalvol; i++){
   let barstep = i*30; 
   rect(barstep+450, volY, volheight, volwidth);
 }
+
+}
+function PaintTab(){
+ painttab.resize(640,640);
+  image(painttab, 1170, 480);
 }
 
-function errortabs(){
+function errortabs(drum){
+  let drumtab = map(drum, 0, 100, -20, 20);
   errortab.resize(800,450);
-  image(errortab, 0, 0);
-
+  // image(errortab, 0, 0);
+  
+  for(let i =1; i <= drumtab; i++){
+    let tabstep = i*30; 
+    image(errortab, tabstep+50, 0);
+}
 }
 
+function draw_history_line(history) {
+  beginShape(LINES);
+  for(let i=0; i<history.length; i++) {
+    let x = i*0.95;
+    let y = map(history[i], 0, 100, height, height/8, true);
+    vertex(x+1300, y+380);
+  }
+  endShape();
+}
+function add_to_history(history, d) {
+  history.push(d);
+  if(history.length >= (width-1)/4) {
+    history.shift();
+  }
+}
 
+function reset_music() {
+  bass_history = [];
+}
